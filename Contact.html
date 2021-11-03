@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>Fred's Cafe</title>
+	<link rel="stylesheet" href="Styles.css">
+	<link rel="stylesheet" href="Contact.css">
+  </head>
+  <body>
+	<nav>
+	  <ul>
+		<li>
+		  <a href="home.html">Home</a>
+		</li>
+		<li>
+		  <a href="contact.html">Contact Us</a>
+		</li>
+		<li>
+		  <a href="Book.html">Book</a>
+		</li>
+		<li>
+		  <a href="Bookings.html">Bookings</a>
+		</li>
+		<!--justify-content works horizontally-->
+		<!--align-items works vertically-->
+	  </ul>
+	</nav>
+
+	<header>
+	  <h1>Contact Us - Fred's Cafe</h1>
+	  <p>Best coffee in Sydney</p>
+	</header>
+
+	<main>
+	  <form class="contact-form" onsubmit="return submitMessage(event);">
+		<label for="email">Email:</label>
+		<input type="text" name="email" id="email" required>
+
+		<label for="fullname">Full Name:</label>
+		<input type="text" name="fullname" id="fullname" required>
+
+		<label for="feedback-type">Feedback Type:</label>
+		<select name="feedback-type" id="feedback-type">
+		  <option value="pick"> </option>
+		  <option value="Review">Review</option>
+		  <option value="Complaint">Complaint</option>
+		  <option value="Event">Book event</option>
+		</select>
+		
+		<label for="comment"> Comments:</label>
+		<textarea name="comment" id="comment" cols="30"
+		 rows="3" required>Leave your comment here.</textarea>
+
+		  <button>Clear</button>
+
+		 <input type="submit" value="Submit">
+	  </form>
+	</main>
+
+	<footer>
+		<dl id="currentMessages">
+
+		</dl>
+	</footer>
+
+
+	<script>
+	  function submitMessage(event) {
+			event.preventDefault()
+			const email = document.getElementById("email").value
+			const fullname = document.getElementById("fullname").value
+			const feedbacktype = document.getElementById("feedback-type").value
+			const comment = document.getElementById("comment").value
+	  
+			const messageObject = {
+			  email, fullname, feedbacktype, comment
+			}
+		
+			let currentMessages = []
+	  
+			if (window.sessionStorage.getItem("message")) {
+			  currentMessages =
+			JSON.parse(window.sessionStorage.getItem("message"))
+			}
+	  
+			currentMessages.push(messageObject)
+			
+			window.sessionStorage.setItem("message",
+			JSON.stringify (currentMessages))
+
+			renderMessages();
+		}
+
+	function renderMessages() {
+		let currentMessages = [];
+
+		if (window.sessionStorage.getItem("messages")) {
+			currentMessages =
+				JSON.parse(
+					window.sessionStorage.getItem("messages")
+				);
+		}	
+
+			let listItems = [];
+			for(let i = 0; i < currentMessages.length; i++) {
+				let listItem = "";
+			const currentMessage = currentMessages[i];
+			listItem += `<dt>${currentMessage.fullname} - ${currentMessage.email}</dt>`;
+			listitem += `<dd>${currentMessage.feedbacktype}: ${currentMessage.comment}</dt>`;
+			listItem += `<br />`;
+			listItems.push(listItem);
+			}
+
+		let desclist = document.getElementById('currentMessages');
+		desclist.innerHTML = listItems.join('');
+		}
+		renderMessages();
+	</script>
+
+  </body>
+</html>
