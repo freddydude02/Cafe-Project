@@ -93,10 +93,10 @@
 	function renderMessages() {
 		let currentMessages = [];
 
-		if (window.sessionStorage.getItem("messages")) {
+		if (window.sessionStorage.getItem("message")) {
 			currentMessages =
 				JSON.parse(
-					window.sessionStorage.getItem("messages")
+					window.sessionStorage.getItem("message")
 				);
 		}	
 
@@ -104,10 +104,10 @@
 			for(let i = 0; i < currentMessages.length; i++) {
 				let listItem = "";
 			const currentMessage = currentMessages[i];
-			listItem += `<dt>${currentMessage.fullname} - ${currentMessage.email}</dt>`;
+			listitem += `<dt>${currentMessage.fullname} - ${currentMessage.email}</dt>`;
 			listitem += `<dd>${currentMessage.feedbacktype}: ${currentMessage.comment}</dt>`;
-			listItem += `<br />`;
-			listItems.push(listItem);
+			listitem += `<br />`;
+			listItems.push(listitem);
 			}
 
 		let desclist = document.getElementById('currentMessages');
