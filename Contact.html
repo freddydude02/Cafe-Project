@@ -62,21 +62,21 @@
 			<button onclick="deleteMessages()">clear messages</button>
 		</div>
 		<div class="form-wrapper">
+			<dl id="currentMessages">
 
+			</dl>
 		</div>
-		<dl id="currentMessages">
-
-		</dl>
 	</footer>
 
 
 	<script>
 	
 	function deleteMessages() {
-		if (window.sessionStorage.getItem("message"))
-			window.sessionStorage.removeItem("message")
-	
-		renderMessages()
+		if (window.sessionStorage.getItem("message")) {
+			window.sessionStorage.removeItem("message");
+		}
+
+		renderMessages();
 	}
 
 	function submitMessage(event) {
