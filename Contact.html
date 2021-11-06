@@ -57,6 +57,13 @@
 	</main>
 
 	<footer>
+		<div class="form-title-section">
+			<h3>Contact Messages</h3>
+			<button onclick="deleteMessages()">clear messages</button>
+		</div>
+		<div class="form-wrapper">
+
+		</div>
 		<dl id="currentMessages">
 
 		</dl>
@@ -64,7 +71,15 @@
 
 
 	<script>
-	  function submitMessage(event) {
+	
+	function deleteMessages() {
+		if (window.sessionStorage.getItem("message"))
+			window.sessionStorage.removeItem("message")
+	
+		renderMessages()
+	}
+
+	function submitMessage(event) {
 			event.preventDefault()
 			const email = document.getElementById("email").value
 			const fullname = document.getElementById("fullname").value

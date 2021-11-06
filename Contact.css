@@ -8,7 +8,15 @@ main > .contact-form{
   grid-gap: 10px;
 }
 footer {
-  display: flex;
-  justify-content: center;
   margin-top: 50px;
+  text-align: center;
+  justify-content: center;
+}
+div.form-wrapper{
+display: flex;
+justify-content: center;
+}
+div.form-title-section{
+  text-align: center;
+  margin-bottom: 40px;
 }
