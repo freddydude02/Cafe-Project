@@ -1,134 +1,142 @@
 <!DOCTYPE html>
 <html>
-  <head>
-	<title>Fred's Cafe</title>
-	<link rel="stylesheet" href="Styles.css">
-	<link rel="stylesheet" href="Contact.css">
-  </head>
-  <body>
-	<nav>
-	  <ul>
-		<li>
-		  <a href="home.html">Home</a>
-		</li>
-		<li>
-		  <a href="contact.html">Contact Us</a>
-		</li>
-		<li>
-		  <a href="Book.html">Book</a>
-		</li>
-		<li>
-		  <a href="About-Us.html">About Us</a>
-		</li>
-		<!--justify-content works horizontally-->
-		<!--align-items works vertically-->
-	  </ul>
-	</nav>
+    <head>
+        <title>Fred's Cafe</title>
+        <link rel="stylesheet" href="Styles.css" />
+        <link rel="stylesheet" href="Contact.css" />
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="contact.html">Contact Us</a>
+                </li>
+                <li>
+                    <a href="Book.html">Book</a>
+                </li>
+                <li>
+                    <a href="About-Us.html">About Us</a>
+                </li>
+                <!--justify-content works horizontally-->
+                <!--align-items works vertically-->
+            </ul>
+        </nav>
 
-	<header>
-	  <h1>Contact Us - Fred's Cafe</h1>
-	  <p>Best coffee in Sydney</p>
-	</header>
+        <header>
+            <h1>Contact Us - Fred's Cafe</h1>
+            <p>Best coffee in Sydney</p>
+        </header>
 
-	<main>
-	  <form class="contact-form" onsubmit="return submitMessage(event);">
-		<label for="email">Email:</label>
-		<input type="text" name="email" id="email" required>
+        <main>
+            <form class="contact-form" onsubmit="return submitMessage(event);">
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email" required />
 
-		<label for="fullname">Full Name:</label>
-		<input type="text" name="fullname" id="fullname" required>
+                <label for="fullname">Full Name:</label>
+                <input type="text" name="fullname" id="fullname" required />
 
-		<label for="feedback-type">Feedback Type:</label>
-		<select name="feedback-type" id="feedback-type">
-		  <option value="pick"> </option>
-		  <option value="Review">Review</option>
-		  <option value="Complaint">Complaint</option>
-		  <option value="Event">Book event</option>
-		</select>
-		
-		<label for="comment"> Comments:</label>
-		<textarea name="comment" id="comment" cols="30"
-		 rows="3" required>Leave your comment here.</textarea>
+                <label for="feedback-type">Feedback Type:</label>
+                <select name="feedback-type" id="feedback-type">
+                    <option value="pick"></option>
+                    <option value="Review">Review</option>
+                    <option value="Complaint">Complaint</option>
+                    <option value="Event">Book event</option>
+                </select>
 
-		  <button>Clear</button>
+                <label for="comment"> Comments:</label>
+                <textarea
+                    name="comment"
+                    id="comment"
+                    cols="30"
+                    rows="3"
+                    required
+                >
+Leave your comment here.</textarea
+                >
 
-		 <input type="submit" value="Submit">
-	  </form>
-	</main>
+                <button>Clear</button>
 
-	<footer>
-		<div class="form-title-section">
-			<h3>Contact Messages</h3>
-			<button onclick="deleteMessages()">clear messages</button>
-		</div>
-		<div class="form-wrapper">
-			<dl id="currentMessages">
+                <input type="submit" value="Submit" />
+            </form>
+        </main>
 
-			</dl>
-		</div>
-	</footer>
+        <footer>
+            <div class="form-title-section">
+                <h3>Contact Messages</h3>
+                <button onclick="deleteMessages()">clear messages</button>
+            </div>
+            <div class="form-wrapper">
+                <dl id="currentMessages"></dl>
+            </div>
+        </footer>
 
+        <script>
+            function deleteMessages() {
+                if (window.sessionStorage.getItem("message")) {
+                    window.sessionStorage.removeItem("message");
+                }
 
-	<script>
-	
-	function deleteMessages() {
-		if (window.sessionStorage.getItem("message")) {
-			window.sessionStorage.removeItem("message");
-		}
+                renderMessages();
+            }
 
-		renderMessages();
-	}
+            function submitMessage(event) {
+                event.preventDefault();
+                const email = document.getElementById("email").value;
+                const fullname = document.getElementById("fullname").value;
+                const feedbacktype =
+                    document.getElementById("feedback-type").value;
+                const comment = document.getElementById("comment").value;
 
-	function submitMessage(event) {
-			event.preventDefault()
-			const email = document.getElementById("email").value
-			const fullname = document.getElementById("fullname").value
-			const feedbacktype = document.getElementById("feedback-type").value
-			const comment = document.getElementById("comment").value
-	  
-			const messageObject = {
-			  email, fullname, feedbacktype, comment
-			}
-		
-			let currentMessages = []
-	  
-			if (window.sessionStorage.getItem("message")) {
-			  currentMessages =
-			JSON.parse(window.sessionStorage.getItem("message"))
-			}
-	  
-			currentMessages.push(messageObject)
-			
-			window.sessionStorage.setItem("message",
-			JSON.stringify (currentMessages))
+                const messageObject = {
+                    email,
+                    fullname,
+                    feedbacktype,
+                    comment,
+                };
 
-			renderMessages();
-		}
+                let currentMessages = [];
 
-	function renderMessages() {
-		let currentMessages = [];
+                if (window.sessionStorage.getItem("message")) {
+                    currentMessages = JSON.parse(
+                        window.sessionStorage.getItem("message")
+                    );
+                }
 
-		if (window.sessionStorage.getItem("message")) {
-			currentMessages =
-				JSON.parse(
-					window.sessionStorage.getItem("message")
-				);
-		}	
+                currentMessages.push(messageObject);
 
-			let listItems = [];
-			for(let i = 0; i < currentMessages.length; i++) {
-				let listitem = "";
-			const currentMessage = currentMessages[i];
-			listitem += `<dt>${currentMessage.fullname} - ${currentMessage.email}</dt>`;
-			listitem += `<dd>${currentMessage.feedbacktype}: ${currentMessage.comment}</dd>`;
-			listitem += `<br />`;
-			listItems.push(listitem);
-			}
+                window.sessionStorage.setItem(
+                    "message",
+                    JSON.stringify(currentMessages)
+                );
 
-		let desclist = document.getElementById('currentMessages');
-		desclist.innerHTML = listItems.join('');
-		}
-	</script>
+                renderMessages();
+            }
 
-  </body>
+            function renderMessages() {
+                let currentMessages = [];
+
+                if (window.sessionStorage.getItem("message")) {
+                    currentMessages = JSON.parse(
+                        window.sessionStorage.getItem("message")
+                    );
+                }
+
+                let listItems = [];
+                for (let i = 0; i < currentMessages.length; i++) {
+                    let listitem = "";
+                    const currentMessage = currentMessages[i];
+                    listitem += `<dt>${currentMessage.fullname} - ${currentMessage.email}</dt>`;
+                    listitem += `<dd>${currentMessage.feedbacktype}: ${currentMessage.comment}</dd>`;
+                    listitem += `<br />`;
+                    listItems.push(listitem);
+                }
+
+                let desclist = document.getElementById("currentMessages");
+                desclist.innerHTML = listItems.join("");
+            }
+        </script>
+    </body>
 </html>
