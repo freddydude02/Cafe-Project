@@ -1,0 +1,22 @@
+@use "./partials/grid";
+@use "./partials/flex-mix";
+
+.screen {
+    @include flex-mix.flex-mix(center, center);
+}
+.gallery {
+    @include grid.grid(1fr 1fr 1fr);
+
+    &__img {
+        height: 100px;
+        width: 100px;
+        border: 10px solid white;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2);
+
+        &--active:hover {
+            box-shadow: 0 8px 16px 0 rgb(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+    }
+}

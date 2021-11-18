@@ -1,0 +1,17 @@
+@use "./partials/grid";
+
+.form {
+    @include grid.grid(1fr 2fr);
+}
+.footer {
+    margin-top: 50px;
+
+    &__text {
+        display: flex;
+        justify-content: center;
+    }
+    &__list {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+}

@@ -1,0 +1,30 @@
+@use "./flex-mix";
+
+.nav {
+    margin-bottom: 20px;
+
+    &__list {
+        @include flex-mix.flex-mix(space-around, center);
+        list-style-type: none;
+        border: 2px solid black;
+        height: 40px;
+    }
+    &__link {
+        color: black;
+        text-decoration: none;
+
+        &--active:hover {
+            color: pink;
+            text-decoration: underline;
+        }
+    }
+}
+.header {
+    text-align: center;
+
+    &__text {
+        &--title {
+            margin-bottom: 30px;
+        }
+    }
+}

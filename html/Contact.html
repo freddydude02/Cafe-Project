@@ -2,52 +2,76 @@
 <html>
     <head>
         <title>Fred's Cafe</title>
-        <link rel="stylesheet" href="Styles.css" />
-        <link rel="stylesheet" href="Contact.css" />
+        <link rel="stylesheet" href="../css/main.css" />
     </head>
     <body>
-        <nav>
-            <ul>
-                <li>
-                    <a href="index.html">Home</a>
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a class="nav__link nav__link--active" href="index.html"
+                        >Home</a
+                    >
                 </li>
-                <li>
-                    <a href="contact.html">Contact Us</a>
+                <li class="nav__item">
+                    <a class="nav__link nav__link--active" href="Contact.html"
+                        >Contact Us</a
+                    >
                 </li>
-                <li>
-                    <a href="Book.html">Book</a>
+                <li class="nav__item">
+                    <a class="nav__link nav__link--active" href="Book.html"
+                        >Book</a
+                    >
                 </li>
-                <li>
-                    <a href="About-Us.html">About Us</a>
+                <li class="nav__item">
+                    <a class="nav__link nav__link--active" href="About-Us.html"
+                        >About Us</a
+                    >
                 </li>
-                <!--justify-content works horizontally-->
-                <!--align-items works vertically-->
             </ul>
         </nav>
 
-        <header>
+        <div class="header">
             <h1>Contact Us - Fred's Cafe</h1>
             <p>Best coffee in Sydney</p>
-        </header>
+        </div>
 
-        <main>
-            <form class="contact-form" onsubmit="return submitMessage(event);">
-                <label for="email">Email:</label>
-                <input type="text" name="email" id="email" required />
+        <main class="screen">
+            <form class="form" onsubmit="return submitMessage(event);">
+                <label class="form__label" for="email">Email:</label>
+                <input
+                    class="form__input"
+                    type="text"
+                    name="email"
+                    id="email"
+                    required
+                />
 
-                <label for="fullname">Full Name:</label>
-                <input type="text" name="fullname" id="fullname" required />
+                <label class="form__label" for="fullname">Full Name:</label>
+                <input
+                    class="form__input"
+                    type="text"
+                    name="fullname"
+                    id="fullname"
+                    required
+                />
 
-                <label for="feedback-type">Feedback Type:</label>
-                <select name="feedback-type" id="feedback-type">
+                <label class="form__label" for="feedback-type"
+                    >Feedback Type:</label
+                >
+                <select
+                    class="form__select"
+                    name="feedback-type"
+                    id="feedback-type"
+                >
                     <option value="pick"></option>
                     <option value="Review">Review</option>
                     <option value="Complaint">Complaint</option>
                     <option value="Event">Book event</option>
                 </select>
 
-                <label for="comment"> Comments:</label>
+                <label class="form__label" for="comment"> Comments:</label>
                 <textarea
+                    class="form__textarea"
                     name="comment"
                     id="comment"
                     cols="30"
@@ -59,19 +83,19 @@ Leave your comment here.</textarea
 
                 <button>Clear</button>
 
-                <input type="submit" value="Submit" />
+                <input class="form__btn" type="submit" value="Submit" />
             </form>
         </main>
 
-        <footer>
-            <div class="form-title-section">
+        <div class="footer">
+            <div class="footer__text footer__text--heading">
                 <h3>Contact Messages</h3>
                 <button onclick="deleteMessages()">clear messages</button>
             </div>
-            <div class="form-wrapper">
+            <div class="footer__list">
                 <dl id="currentMessages"></dl>
             </div>
-        </footer>
+        </div class="footer">
 
         <script>
             function deleteMessages() {
